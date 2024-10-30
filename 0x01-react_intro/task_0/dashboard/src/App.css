@@ -1,0 +1,29 @@
+:root {
+  --main-accent-color: #E0344B;
+}
+
+.App-header {
+  display: flex;
+  height: 30vh;
+  color:var(--main-accent-color);
+}
+
+.App-header h1 {
+  align-content: center;
+}
+
+.App-body {
+  border-top: 3px solid var(--main-accent-color);
+  border-bottom: 3px solid var(--main-accent-color);
+  height: 60vh;
+}
+
+.App-footer {
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  font-style: italic;
+}
+
+
+
