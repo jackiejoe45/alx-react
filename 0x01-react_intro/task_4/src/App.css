@@ -1,0 +1,44 @@
+/*
+/* 
+add a label and input for email
+add a label and input for password
+when the user clicks on a label, it should select the corresponding input
+add one button element with the text “OK”
+*/
+:root {
+  --main-accent-color: #E0344B;
+}
+
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+  top: 25vh;
+  position: relative;
+}
+
+.App-header {
+  display: flex;
+  height: 20vh;
+  color:var(--main-accent-color);
+  border-bottom: 3px solid var(--main-accent-color);
+}
+
+.App-header h1 {
+  align-content: center;
+}
+
+.App-body {
+  border-top: 3px solid var(--main-accent-color);
+  border-bottom: 3px solid var(--main-accent-color);
+  height: 40vh;
+}
+
+.App-footer {
+  border-top: 3px solid var(--main-accent-color);
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  font-style: italic;
+}
+
+
+
