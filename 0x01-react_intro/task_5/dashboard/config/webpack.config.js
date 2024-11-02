@@ -1,53 +1,54 @@
-// config/webpack.config.js
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: 'bundle.js',
+    filename: "bundle.js",
   },
-  mode: 'development',
-  devtool: 'inline-source-map',
-  devServer: {
-    static: path.resolve(__dirname, '../dist'), // Replaces contentBase
-    hot: true, // Enables hot reloading
-  },
+  mode: "development",
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        // type: 'asset/resource',
         use: [
+          "file-loader",
           {
-            loader: 'file-loader',
+            loader: "image-webpack-loader",
             options: {
-              name: '[name].[hash].[ext]',
-              outputPath: 'images',
-            },
-          },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: { progressive: true },
-              optipng: { enabled: false },
-              pngquant: { quality: [0.65, 0.9], speed: 4 },
-              gifsicle: { interlaced: false },
-              webp: { quality: 75 },
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
             },
           },
         ],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
     ],
   },
+  resolve: {
+    extensions: ["*", ".js", ".jsx"],
+  },
+  devServer: {
+    static: "./dist",
+    compress: true,
+    open: true,
+    hot: true,
+    port: 8564,
+  },
+  devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../dist/index.html'),
-      filename: 'index.html',
+      name: "index.html",
+      inject: false,
+      template: "./dist/index.html",
     }),
   ],
 };
